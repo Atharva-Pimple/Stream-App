@@ -1,0 +1,60 @@
+# Ignore logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore build output directories
+/stream-frontend/build/
+/stream-frontend/node_modules/
+/stream-frontend/dist/
+/stream-frontend/.cache/
+
+# React-specific files
+/stream-frontend/.env.local
+/stream-frontend/.env.development.local
+/stream-frontend/.env.test.local
+/stream-frontend/.env.production.local
+
+# Ignore Spring Boot build and dependencies
+/spring-stream-backend/target/
+/spring-stream-backend/.mvn/
+/spring-stream-backend/out/
+*.war
+*.jar
+
+#folders
+/spring-stream-backend/videos/
+/spring-stream-backend/videos_hls/
+
+# Ignore Spring Boot-specific files
+/spring-stream-backend/src/main/resources/application-dev.properties
+
+
+# IntelliJ IDEA files
+.idea/
+/*.iml
+*.iws
+*.ipr
+
+# VSCode settings
+.vscode/
+
+# Maven specific files
+/spring-stream-backend/.settings/
+/spring-stream-backend/.project
+/spring-stream-backend/.classpath
+/spring-stream-backend/mvnw
+/spring-stream-backend/mvnw.cmd
+
+# Ignore test coverage
+coverage/
+
+# Ignore temporary files
+*.swp
+*.swo
+*.tmp
