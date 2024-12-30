@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import uploadLogo from "../assets/upload.png";
 import { Button, Card, Label, Textarea, TextInput, Progress, Alert} from "flowbite-react";
-import axios from "axios";
+import apiClient from "../api/apiClient";
 
 function VideoUpload() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -13,6 +13,7 @@ function VideoUpload() {
   const [progress, setProgress] = useState(0);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
+  const [alertColor, setAlertColor] = useState("failure");
 
   function handleFieldChange(event){
     // console.log(event.target.name);
@@ -56,7 +57,7 @@ function VideoUpload() {
     formData.append("file",selectedFile);
 
     try{
-      let response=await axios.post(`http://localhost:8080/api/v1/videos`,formData,{
+      let response=await apiClient.post(`/api/v1/videos`,formData,{
         headers:{
           'Content-Type':'multipart/form-data',
         },
@@ -67,16 +68,19 @@ function VideoUpload() {
         }
       });
 
-      console.log(response);
-
       setProgress(0);
       setUploading(false);
+      setAlertColor("success");
       setMessage("File uploaded");
       resetForm();
     }catch(error){
       console.log(error);
       setUploading(false);
-      setMessage("Error in uploading file");
+      if (error.response && error.response.status === 403) {
+        setMessage("Please login");
+    } else {
+        setMessage("Error in uploading file");
+    }
     }
   }
 
@@ -135,8 +139,8 @@ function VideoUpload() {
             </div>
 
             <div>
-              {message && <Alert color={"success"} rounded withBorderAccent onDismiss={()=>{setMessage("")}}>
-                <span className="font-medium">Success alert! </span>
+              {message && <Alert color={alertColor} rounded withBorderAccent onDismiss={()=>{setMessage("")}}>
+                <span className="font-medium">{alertColor} alert! </span>
                 {message}
               </Alert>}
             </div>

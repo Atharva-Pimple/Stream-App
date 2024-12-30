@@ -10,6 +10,7 @@ function VideoPlayer({src}) {
     const playerRef=useRef(null);
 
     useEffect(()=>{
+        const token=sessionStorage.getItem("jwtToken");
         playerRef.current=videojs(videoRef.current,{
             controls:true,
             autoplay:true,
@@ -18,7 +19,11 @@ function VideoPlayer({src}) {
         });
 
         if(Hls.isSupported()){
-            const hls=new Hls();
+            const hls=new Hls({
+              xhrSetup: (xhr)=>{
+                xhr.setRequestHeader("Authorization",token);
+              }
+            });
             hls.loadSource(src);
             hls.attachMedia(videoRef.current);
             hls.on(Hls.Events.MANIFEST_PARSED, ()=>{

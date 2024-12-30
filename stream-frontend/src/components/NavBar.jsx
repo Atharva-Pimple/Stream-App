@@ -24,8 +24,8 @@ function NavBar() {
         <Navbar.Link href="/upload" active={location.pathname=='/upload'} className="text-white mt-2">
           Upload Video
         </Navbar.Link>
-        <Navbar.Link href="/contact" active={location.pathname=='/contact'} className="text-white mt-2">
-          Contact
+        <Navbar.Link href="/login" active={location.pathname=='/login'} className="text-white mt-2">
+          Login
         </Navbar.Link>
         <div>
           <DarkThemeToggle className="text-white focus:ring-0 hover:bg-cyan-700" />

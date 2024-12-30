@@ -5,6 +5,8 @@ import Videos from "./components/Videos";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PlayScreen from "./components/PlayScreen";
 import About from "./components/About";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/videos/play" element={<PlayScreen/>}/>
           <Route path="/upload" element={<VideoUpload/>}/>
           <Route path="/about" element={<About/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/signup" element={<Register/>}/>
         </Routes>
       </Router>
     </div>

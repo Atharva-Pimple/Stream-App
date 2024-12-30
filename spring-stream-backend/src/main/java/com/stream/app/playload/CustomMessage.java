@@ -1,5 +1,7 @@
 package com.stream.app.playload;
 
+import java.util.Map;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,4 +16,5 @@ import lombok.Setter;
 public class CustomMessage {
     private String Message;
     private boolean success;
+    private Map<String,String> errors;
 }
